@@ -1,6 +1,6 @@
 CONFIG_TARGET_mediatek=y
 CONFIG_TARGET_mediatek_filogic=y
-CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_openwrt_one=y
+CONFIG_TARGET_mediatek_filogic_DEVICE_openwrt_one=y
 CONFIG_TARGET_ROOTFS_INITRAMFS=y
 
 CONFIG_TARGET_PREINIT_IP="192.168.8.1"
