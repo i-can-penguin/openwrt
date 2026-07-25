@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/*
+ * Copyright (C) 2026
+ * Author: Mark Birss <mark.birss@gmail.com>
+ * Combined layout: JTAG Disabling + Configure SPI1 Si3210 Device for automatic spidev2.0 Activation
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+        compatible = "openwrt,one", "mediatek,mt7981";
+
+        /* ====================================================================
+           Fragment 0: Force-disable JTAG Pinmux to release GPIO 6 through 10
+           ==================================================================== */
+        fragment@0 {
+                target = <&pio>;
+                __overlay__ {
+                        
+                        /* Locate and disable the native JTAG pin assignment child block.
+                           This tears down the default hardware debugging map and releases
+                           the physical pins back to the system. */
+                        jtag_pins {
+                                status = "disabled"; 
+                        };
+                };
+        };
+
+        /* =========================================================
+           Fragment 1: Configures SPI1 which enables /dev/spidev2.0 
+           ========================================================= */
+        fragment@1 {
+                target = <&spi1>;
+                __overlay__ {
+                        status = "okay";
+
+                        spidev@0 {
+                                compatible = "silabs,si3210";
+                                reg = <0>;
+                                #address-cells = <1>;
+                                #size-cells = <0>;
+                                spi-max-frequency = <52000000>;
+                        };
+                };
+        };
+};
