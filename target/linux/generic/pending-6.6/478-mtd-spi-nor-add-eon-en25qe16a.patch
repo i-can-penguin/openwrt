@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000001 Thu Nov 15 18:42:14 2026
+From: Mark Birss <mark.birss@gmail.com>
+Date: Thu, 15 Nov 2026 18:42:14 +0200
+Subject: [PATCH] mtd: spi-nor: add support for EON EN25QE16A
+
+The GL-MG1300 uses a 2MB EON EN25QE16A (JEDEC ID 0x1c4115) SPI-NOR flash
+for bootloader and factory data.
+
+Signed-off-by: Mark Birss <mark.birss@gmail.com>
+---
+ drivers/mtd/spi-nor/eon.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/drivers/mtd/spi-nor/eon.c
++++ b/drivers/mtd/spi-nor/eon.c
+@@ -25,4 +25,6 @@ static const struct flash_info eon_nor_p
+ 	{ "en25q80a",   INFO(0x1c3014, 0, 64 * 1024,   16)
+ 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ) },
++	{ "en25qe16a",  INFO(0x1c4115, 0, 64 * 1024,   32)
++		NO_SFDP_FLAGS(SECT_4K) },
+ 	{ "en25qh16",   INFO(0x1c7015, 0, 64 * 1024,   32)
+ 		NO_SFDP_FLAGS(SECT_4K | SPI_NOR_DUAL_READ) },
