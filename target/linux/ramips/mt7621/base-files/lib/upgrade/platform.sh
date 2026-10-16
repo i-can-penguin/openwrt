@@ -15,6 +15,9 @@ platform_check_image() {
 	[ "$#" -gt 1 ] && return 1
 
 	case "$board" in
+	glinet,gl-mg1300)
+		sysctl -qw vm.min_free_kbytes=1024
+		;;	
 	buffalo,wsr-2533dhpl2|\
 	buffalo,wsr-2533dhpls)
 		buffalo_check_image "$board" "$magic" "$1" || return 1
@@ -83,7 +86,7 @@ platform_do_upgrade() {
 	dlink,covr-x1860-a1|\
 	dlink,dap-x1860-a1|\
 	dlink,dir-1960-a1|\
-        dlink,dir-2055-a1|\
+    dlink,dir-2055-a1|\
 	dlink,dir-2150-a1|\
 	dlink,dir-2150-r1|\
 	dlink,dir-2640-a1|\
@@ -101,9 +104,7 @@ platform_do_upgrade() {
 	hiwifi,hc5962|\
 	gemtek,wvrtm-127acn|\
 	gemtek,wvrtm-130acn|\
-	glinet,gl-mg1300)
-		sysctl -qw vm.min_free_kbytes=1024
-		;;
+    glinet,gl-mg1300|\
 	iptime,a3004t|\
 	iptime,ax2004m|\
 	iptime,t5004|\
