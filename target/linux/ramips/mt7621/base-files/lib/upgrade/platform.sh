@@ -101,7 +101,9 @@ platform_do_upgrade() {
 	hiwifi,hc5962|\
 	gemtek,wvrtm-127acn|\
 	gemtek,wvrtm-130acn|\
-	glinet,gl-mg1300|\
+	glinet,gl-mg1300)
+		sysctl -qw vm.min_free_kbytes=1024
+		;;
 	iptime,a3004t|\
 	iptime,ax2004m|\
 	iptime,t5004|\
